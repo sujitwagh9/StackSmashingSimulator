@@ -1,9 +1,11 @@
 # emulator.py
 def emulate_stack(parsed_code):
     """
-    Simulates the stack behavior for the parsed code, visualizing stack frames and overflows.
+    Simulates stack behavior based on function invocations and simulates potential overflows.
     """
     stack = []
-    for func in parsed_code:
-        stack.append(f"Simulating {func}")
+    for func, _ in parsed_code:
+        stack.append(f"Simulating stack for function '{func}'")
+        if "strcpy" in func or "gets" in func:
+            stack.append(f"Warning: Possible buffer overflow in '{func}'")
     return stack
